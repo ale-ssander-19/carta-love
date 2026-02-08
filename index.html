@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💌 Carta especial</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(to top, #ffd6e0, #fff0f5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    padding: 15px;
+  }
+  
+  h2 {
+    font-size: clamp(1.2em, 4vw, 1.6em);
+    color: #ff4f81;
+    text-shadow: 0 0 8px #fff;
+    margin-bottom: 10px;
+    animation: bounce 1.5s infinite alternate;
+    padding: 0 10px;
+  }
+  
+  @keyframes bounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-8px); }
+  }
+  
+  /* 📮 Envelope */
+  .envelope {
+    width: min(480px, 90vw);
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    z-index: 10;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.25));
+    margin: 10px 0 20px;
+  }
+  
+  .envelope:hover {
+    transform: scale(1.05);
+  }
+  
+  #arrow-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+  }
+  
+  .arrow-text {
+    color: #ff4f81;
+    font-weight: 600;
+    font-size: clamp(0.9em, 3vw, 1.1em);
+    margin-top: 10px;
+    animation: fadeIn 2s ease-in-out infinite alternate;
+  }
+  
+  .arrow {
+    font-size: 2em;
+    color: #ff4f81;
+    animation: arrowMove 1.2s infinite alternate;
+    margin-top: 5px;
+  }
+  
+  @keyframes arrowMove {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(8px); }
+  }
+  
+  @keyframes fadeIn {
+    0% { opacity: 0.5; }
+    100% { opacity: 1; }
+  }
+  
+  /* 📄 Carta */
+  .letter {
+    display: none;
+    background-color: #fff;
+    background-image:
+      linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+    width: min(500px, 95vw);
+    max-width: 95vw;
+    padding: clamp(20px, 5vw, 40px);
+    border-radius: 4px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.25);
+    text-align: left;
+    animation: slideUp 1s ease;
+    position: relative;
+    z-index: 2;
+    font-family: 'Dancing Script', cursive;
+    line-height: 1.6;
+    font-size: clamp(1em, 4vw, 1.3em);
+    margin: 20px auto;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .heart {
+    position: absolute;
+    font-size: clamp(16px, 4vw, 24px);
+    animation: floatUp 7s linear infinite;
+    opacity: 0.9;
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  @keyframes floatUp {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-120vh) scale(0.5); opacity: 0; }
+  }
+  
+  .signature {
+    text-align: right;
+    margin-top: 20px;
+    font-style: italic;
+  }
+  
+  .date {
+    text-align: right;
+    color: #999;
+    font-size: clamp(0.75em, 3vw, 0.85em);
+    margin-bottom: 10px;
+  }
+  
+  /* Ajustes para móviles */
+  @media (max-width: 480px) {
+    body {
+      padding: 10px;
+      justify-content: flex-start;
+      padding-top: 20px;
+    }
+    
+    .letter {
+      padding: 20px;
+      margin: 10px auto;
+      line-height: 1.5;
+    }
+    
+    .envelope {
+      width: 85vw;
+      margin: 5px 0 15px;
+    }
+    
+    .arrow {
+      font-size: 1.8em;
+    }
+  }
+  
+  /* Ajustes para tablets */
+  @media (max-width: 768px) and (min-width: 481px) {
+    .letter {
+      padding: 30px;
+    }
+    
+    .envelope {
+      width: 70vw;
+    }
+  }
+</style>
+</head>
+<body>
+<h2 id="instruction">💌 Carta especial para Karla 💌</h2>
+<div id="arrow-container">
+  <div class="arrow-text">Toca para abrir</div>
+  <div class="arrow">⬇️</div>
+</div>
+<img src="https://goo.su/KLXC" 
+     alt="Sobre de carta" 
+     class="envelope" 
+     id="envelope"
+     onclick="openEnvelope()">
+<div class="letter" id="letter">
+  <div class="date">Lima, 7 de febrero de 2026</div>
+  <p>
+    Amor,  
+    <br><br>
+    Yo sé que esto es inesperado pero quiero describir lo que siento por ti.  
+    Quizá no me alcancen las palabras para poder hacerlo, pero sé que
+    eres mi camino y siempre serás mi camino, eres el motivo de mi alegría 
+    y a quien pienso todos los días antes de dormir💗.  
+    <br><br>
+    Cada momento que paso contigo se vuelve un hermoso recuerdo que guardo con ternura.  
+    Tu forma de ser, tu paciencia y tu amor hacen que cada día tenga sentido.  
+    Me encanta cómo haces que lo simple sea especial, cómo logras  
+    que mi mundo se sienta más bonito solo con un mensaje tuyo💗.  
+    <br><br>
+    Esta carta es solo una pequeña muestra de todo lo que llevo dentro y para
+    hacerte una propuesta, ¿quieres ser mi "date" el 14 de febrero?  
+    <br><br>
+    ¡Espero que siii🥹🥹🥹! 
+    <br><br>
+    Te amo más de lo que puedas imaginar.
+    <br><br>
+    Gracias por ser tú, por existir, por quedarte conmigo❤️.
+  </p>
+  <div class="signature">
+    Con todo mi amor,  
+    <br>
+    <strong>Alexander 💌</strong>
+  </div>
+</div>
+<script>
+function openEnvelope() {
+  const envelope = document.getElementById('envelope');
+  const letter = document.getElementById('letter');
+  const arrowContainer = document.getElementById('arrow-container');
+  const text = document.getElementById('instruction');
+  
+  envelope.style.transform = "scale(0.8)";
+  envelope.style.opacity = "0";
+  text.style.display = "none";
+  arrowContainer.style.display = "none";
+  
+  setTimeout(() => {
+    envelope.style.display = "none";
+    letter.style.display = "block";
+    startInfiniteHearts();
+    // Scroll suave a la carta en móviles
+    letter.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 600);
+}
+
+function startInfiniteHearts() {
+  // Limpiar corazones existentes
+  document.querySelectorAll('.heart').forEach(heart => heart.remove());
+  
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.textContent = "💗";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (16 + Math.random() * 26) + "px";
+    heart.style.animationDuration = (6 + Math.random() * 4) + "s";
+    document.body.appendChild(heart);
+    
+    // Eliminar después de que termine la animación
+    setTimeout(() => {
+      if (heart.parentNode) {
+        heart.remove();
+      }
+    }, 10000);
+  }, 200);
+}
+</script>
+</body>
+</html>
